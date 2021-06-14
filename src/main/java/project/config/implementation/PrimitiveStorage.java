@@ -1,4 +1,4 @@
 package project.config.implementation;
 
-public class PrimitiveStorage {
+class PrimitiveStorage {
 }
