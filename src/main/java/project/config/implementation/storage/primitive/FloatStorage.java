@@ -1,8 +1,8 @@
 package project.config.implementation.storage.primitive;
 
-import project.config.api.Storage;
+import project.config.implementation.storage.PrimitiveStorage;
 
-public class FloatStorage extends Storage {
+public class FloatStorage extends PrimitiveStorage {
 
     private final float f;
 

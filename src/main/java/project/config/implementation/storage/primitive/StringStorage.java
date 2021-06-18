@@ -1,8 +1,8 @@
 package project.config.implementation.storage.primitive;
 
-import project.config.api.Storage;
+import project.config.implementation.storage.PrimitiveStorage;
 
-public class StringStorage extends Storage {
+public class StringStorage extends PrimitiveStorage {
 
     private final String s;
 

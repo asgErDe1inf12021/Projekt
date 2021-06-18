@@ -1,8 +1,8 @@
 package project.config.implementation.storage.primitive;
 
-import project.config.api.Storage;
+import project.config.implementation.storage.PrimitiveStorage;
 
-public class DoubleStorage extends Storage {
+public class DoubleStorage extends PrimitiveStorage {
 
     private final double d;
 

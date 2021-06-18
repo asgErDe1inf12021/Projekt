@@ -1,8 +1,8 @@
 package project.config.implementation.storage.primitive;
 
-import project.config.api.Storage;
+import project.config.implementation.storage.PrimitiveStorage;
 
-public class BooleanStorage extends Storage {
+public class BooleanStorage extends PrimitiveStorage {
 
     private final boolean b;
 
