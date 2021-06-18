@@ -6,6 +6,10 @@ import project.config.implementation.storage.primitive.*;
 
 public class Api extends project.config.api.Api {
 
+    public Api() {
+        System.out.println("Using Simple Config Api");
+    }
+
     @Override
     public Storage saveObject(Serializable serializable) {
         return null;
