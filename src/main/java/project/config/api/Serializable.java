@@ -3,6 +3,16 @@ package project.config.api;
 import java.util.HashMap;
 
 public interface Serializable {
+    /**
+     * Serialize an Object to a HashMap
+     * @return the Object as a HashMap
+     */
     HashMap<String, Storage> serialize();
-    Serializable readFrom(HashMap<String, Storage> map);
+
+    /**
+     * Deserialize from a HashMap
+     * If the Object is already fully initialized, throw an InvalidStateException
+     * @param map the map to deserialize from
+     */
+    void readFrom(HashMap<String, Storage> map);
 }
