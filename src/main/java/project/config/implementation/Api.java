@@ -34,4 +34,29 @@ public class Api extends project.config.api.Api {
     public Storage saveString(String s) {
         return null;
     }
+
+    @Override
+    public int readInt(Storage storage) {
+        return 0;
+    }
+
+    @Override
+    public boolean readBoolean(Storage storage) {
+        return false;
+    }
+
+    @Override
+    public double readDouble(Storage storage) {
+        return 0;
+    }
+
+    @Override
+    public float readIFloat(Storage storage) {
+        return 0;
+    }
+
+    @Override
+    public String readString(Storage storage) {
+        return "";
+    }
 }
