@@ -51,7 +51,7 @@ public class Api extends project.config.api.Api {
     }
 
     @Override
-    public float readIFloat(Storage storage) {
+    public float readFloat(Storage storage) {
         return 0;
     }
 

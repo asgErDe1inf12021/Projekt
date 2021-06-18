@@ -14,6 +14,6 @@ public abstract class Api {
     public abstract int readInt(Storage storage);
     public abstract boolean readBoolean(Storage storage);
     public abstract double readDouble(Storage storage);
-    public abstract float readIFloat(Storage storage);
+    public abstract float readFloat(Storage storage);
     public abstract String readString(Storage storage);
 }
