@@ -1,4 +1,4 @@
-package project.config.implementation;
+package project.config.implementation.storage;
 
 import project.config.api.Serializable;
 import project.config.api.Storage;

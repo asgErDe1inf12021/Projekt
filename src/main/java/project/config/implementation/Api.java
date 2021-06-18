@@ -2,6 +2,7 @@ package project.config.implementation;
 
 import project.config.api.Serializable;
 import project.config.api.Storage;
+import project.config.implementation.storage.primitive.*;
 
 public class Api extends project.config.api.Api {
 
@@ -12,51 +13,51 @@ public class Api extends project.config.api.Api {
 
     @Override
     public Storage saveInt(int i) {
-        return null;
+        return new IntStorage(i);
     }
 
     @Override
     public Storage saveBoolean(boolean b) {
-        return null;
+        return new BooleanStorage(b);
     }
 
     @Override
     public Storage saveDouble(double d) {
-        return null;
+        return new DoubleStorage(d);
     }
 
     @Override
     public Storage saveFloat(float f) {
-        return null;
+        return new FloatStorage(f);
     }
 
     @Override
     public Storage saveString(String s) {
-        return null;
+        return new StringStorage(s);
     }
 
     @Override
     public int readInt(Storage storage) {
-        return 0;
+        return (int) storage.read();
     }
 
     @Override
     public boolean readBoolean(Storage storage) {
-        return false;
+        return (boolean) storage.read();
     }
 
     @Override
     public double readDouble(Storage storage) {
-        return 0;
+        return (double) storage.read();
     }
 
     @Override
     public float readFloat(Storage storage) {
-        return 0;
+        return (float) storage.read();
     }
 
     @Override
     public String readString(Storage storage) {
-        return "";
+        return (String) storage.read();
     }
 }
