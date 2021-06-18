@@ -1,5 +1,8 @@
 package project;
 
+
+import project.config.api.Api;
+
 public class Main {
 
     /**
@@ -7,6 +10,6 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Api.Api = new project.config.implementation.Api();
     }
 }
