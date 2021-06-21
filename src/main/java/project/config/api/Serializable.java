@@ -13,6 +13,7 @@ public interface Serializable {
      * Deserialize from a HashMap
      * If the Object is already fully initialized, throw an InvalidStateException
      * @param map the map to deserialize from
+     * @return the deserialized Object
      */
-    void readFrom(HashMap<String, Storage> map);
+    Serializable readFrom(HashMap<String, Storage> map);
 }
