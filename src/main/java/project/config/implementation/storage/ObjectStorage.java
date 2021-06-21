@@ -14,10 +14,6 @@ public class ObjectStorage extends Storage {
         this.identifier = identifier;
     }
 
-    protected HashMap<String, Storage> getSerializedObject() {
-        return serializedObject;
-    }
-
     @Override
     public HashMap<String, Storage> read() {
         return serializedObject;
