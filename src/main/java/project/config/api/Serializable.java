@@ -15,5 +15,8 @@ public interface Serializable {
      * @param map the map to deserialize from
      * @return the deserialized Object
      */
+    @Deprecated
     Serializable readFrom(HashMap<String, Storage> map);
+
+    String getIdentifier();
 }
