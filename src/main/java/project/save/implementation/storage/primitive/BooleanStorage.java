@@ -1,6 +1,6 @@
-package project.config.implementation.storage.primitive;
+package project.save.implementation.storage.primitive;
 
-import project.config.implementation.storage.PrimitiveStorage;
+import project.save.implementation.storage.PrimitiveStorage;
 
 public class BooleanStorage extends PrimitiveStorage {
 
