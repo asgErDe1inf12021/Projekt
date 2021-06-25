@@ -1,7 +1,7 @@
-package project.config.implementation.storage;
+package project.save.implementation.storage;
 
-import project.config.api.Serializable;
-import project.config.api.Storage;
+import project.save.api.Serializable;
+import project.save.api.Storage;
 
 import java.util.HashMap;
 

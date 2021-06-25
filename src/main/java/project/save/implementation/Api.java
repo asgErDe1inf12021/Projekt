@@ -1,13 +1,13 @@
-package project.config.implementation;
+package project.save.implementation;
 
-import project.config.api.Serializable;
-import project.config.api.Storage;
-import project.config.implementation.storage.ObjectStorage;
-import project.config.implementation.storage.primitive.*;
+import project.save.api.Serializable;
+import project.save.api.Storage;
+import project.save.implementation.storage.ObjectStorage;
+import project.save.implementation.storage.primitive.*;
 
 import java.util.HashMap;
 
-public class Api extends project.config.api.Api {
+public class Api extends project.save.api.Api {
 
     private final HashMap<String, SerializableFactory<?>> deserializers = new HashMap<>();
 
