@@ -15,5 +15,6 @@ public class Main {
         Game.init(args);
         Game.world().loadEnvironment("test.tmx");
         Game.start();
+        Game.world().camera().pan(10000, 10000, 1000);
     }
 }
