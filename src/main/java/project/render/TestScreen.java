@@ -1,9 +1,12 @@
 package project.render;
 
+import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.TextRenderer;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
+import project.entities.Block;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public class TestScreen extends GameScreen {
     public TestScreen() {
@@ -12,6 +15,7 @@ public class TestScreen extends GameScreen {
 
     @Override
     public void render(final Graphics2D g) {
+        Block b = new Block(g);
         super.render(g);
         g.setFont(g.getFont().deriveFont(50f));
         g.setColor(Color.white);
