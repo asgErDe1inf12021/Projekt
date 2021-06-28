@@ -17,8 +17,7 @@ public class TestScreen extends GameScreen {
     public void render(final Graphics2D g) {
         Block b = new Block(g);
         super.render(g);
-        g.setFont(g.getFont().deriveFont(50f));
         g.setColor(Color.white);
-        TextRenderer.render(g, "Test text", 100, 100);
+        TextRenderer.render(g, ""+Game.loop().getTickRate(), 5, 15);
     }
 }
