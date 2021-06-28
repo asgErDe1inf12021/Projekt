@@ -13,6 +13,7 @@ public class Main {
         Api.Api = new project.save.implementation.Api();
         Game.addGameListener(new GameState());
         Game.init(args);
+        Game.world().loadEnvironment("test.tmx");
         Game.start();
     }
 }
