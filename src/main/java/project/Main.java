@@ -1,6 +1,8 @@
 package project;
 
 import de.gurkenlabs.litiengine.Game;
+import project.entities.Player;
+import project.input.KeyboardEntityController;
 import project.save.api.Api;
 import project.logic.GameState;
 
@@ -15,6 +17,7 @@ public class Main {
         Game.init(args);
         Game.world().loadEnvironment("test.tmx");
         Game.start();
-        Game.world().camera().pan(10000, 10000, 1000);
+        Game.world().environment().add(new Player());
+        //Game.world().camera().pan(10000, 10000, 1000);
     }
 }
