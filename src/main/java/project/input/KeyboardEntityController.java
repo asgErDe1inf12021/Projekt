@@ -1,9 +1,10 @@
-package  de.gurkenlabs.litiengine.input;
+package project.input;
 
 import  java.awt.event.KeyEvent;
 import  java.util.ArrayList;
 import  java.util.List;
 import  de.gurkenlabs.litiengine.entities.IMobileEntity;
+import de.gurkenlabs.litiengine.input.Input;
 import  de.gurkenlabs.litiengine.physics.MovementController;
 import  de.gurkenlabs.litiengine.util.ListUtilities;
 
