@@ -6,7 +6,6 @@ import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import project.entities.Block;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public class TestScreen extends GameScreen {
     public TestScreen() {
