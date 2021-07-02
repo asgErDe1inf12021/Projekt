@@ -8,8 +8,11 @@ import project.entities.Block;
 import java.awt.*;
 
 public class TestScreen extends GameScreen {
+    private Block block;
+
     public TestScreen() {
         super("TEST");
+        block = new Block();
     }
 
     @Override

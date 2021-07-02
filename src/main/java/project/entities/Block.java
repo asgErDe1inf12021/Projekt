@@ -1,6 +1,7 @@
 package project.entities;
 
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.IUpdateable;
 
 import java.awt.*;
@@ -12,8 +13,7 @@ public class Block implements IUpdateable {
     private Double x;
     private Double y;
 
-    public Block(Graphics2D g) {
-        this.g = g;
+    public Block() {
         x = 0.0;
         y = 0.0;
 
