@@ -7,6 +7,7 @@ import de.gurkenlabs.litiengine.entities.*;
 import de.gurkenlabs.litiengine.entities.behavior.IBehaviorController;
 import de.gurkenlabs.litiengine.environment.Environment;
 import de.gurkenlabs.litiengine.environment.tilemap.ICustomPropertyProvider;
+import de.gurkenlabs.litiengine.environment.tilemap.xml.CustomPropertyProvider;
 import de.gurkenlabs.litiengine.graphics.RenderType;
 import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.physics.Collision;
@@ -16,6 +17,7 @@ import project.input.KeyboardEntityController;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player implements IMobileEntity {
@@ -331,7 +333,7 @@ public class Player implements IMobileEntity {
 
     @Override
     public RenderType getRenderType() {
-        return null;
+        return RenderType.NORMAL;
     }
 
     @Override
@@ -376,7 +378,7 @@ public class Player implements IMobileEntity {
 
     @Override
     public List<String> getTags() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -436,7 +438,7 @@ public class Player implements IMobileEntity {
 
     @Override
     public ICustomPropertyProvider getProperties() {
-        return null;
+        return new CustomPropertyProvider();
     }
 
     @Override
