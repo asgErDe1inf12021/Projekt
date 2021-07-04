@@ -249,7 +249,7 @@ public class Player implements IMobileEntity {
 
     @Override
     public boolean isVisible() {
-        return false;
+        return true;
     }
 
     @Override
@@ -359,7 +359,7 @@ public class Player implements IMobileEntity {
 
     @Override
     public String sendMessage(Object sender, String message) {
-        return null;
+        return "";
     }
 
     @Override
@@ -459,6 +459,6 @@ public class Player implements IMobileEntity {
 
     @Override
     public boolean isLoaded() {
-        return false;
+        return true;
     }
 }
