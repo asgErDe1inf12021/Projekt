@@ -15,6 +15,7 @@ import de.gurkenlabs.litiengine.physics.CollisionEvent;
 import de.gurkenlabs.litiengine.physics.IMovementController;
 import project.input.KeyboardEntityController;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -103,42 +104,42 @@ public class Player implements IMobileEntity {
 
     @Override
     public Rectangle2D getCollisionBox() {
-        return null;
+        return new Rectangle(0, 0, 10, 10);
     }
 
     @Override
     public Rectangle2D getCollisionBox(Point2D location) {
-        return null;
+        return new Rectangle((Point) location, new Dimension(10, 10));
     }
 
     @Override
     public Point2D getCollisionBoxCenter() {
-        return null;
+        return new Point(0, 0);
     }
 
     @Override
     public Valign getCollisionBoxValign() {
-        return null;
+        return Valign.TOP;
     }
 
     @Override
     public Align getCollisionBoxAlign() {
-        return null;
+        return Align.LEFT;
     }
 
     @Override
     public Collision getCollisionType() {
-        return null;
+        return Collision.NONE;
     }
 
     @Override
     public double getCollisionBoxHeight() {
-        return 0;
+        return 10;
     }
 
     @Override
     public double getCollisionBoxWidth() {
-        return 0;
+        return 10;
     }
 
     @Override
@@ -318,7 +319,7 @@ public class Player implements IMobileEntity {
 
     @Override
     public Point2D getLocation() {
-        return null;
+        return new Point();
     }
 
     @Override
