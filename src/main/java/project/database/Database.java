@@ -4,12 +4,15 @@ import java.sql.*;
 
 public class Database {
 
-    int score = 0;
+    int score;
     int highscore;
     String currentUser;
 
     public Database() {
-
+        score = 12345;
+        currentUser = "Nick";
+        getHighscore(currentUser);
+        updateHighscore(currentUser);
     }
 
     public Connection connect() {
