@@ -1,6 +1,7 @@
 package project;
 
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.resources.Resources;
 import project.entities.Player;
 import project.logic.GameState;
 import project.save.api.Api;
