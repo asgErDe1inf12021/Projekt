@@ -1,7 +1,5 @@
 package project.database;
 
-import javax.swing.plaf.nimbus.State;
-import javax.xml.transform.Result;
 import java.sql.*;
 
 public class Database {
@@ -19,18 +17,19 @@ public class Database {
             Class.forName("org.sqlite.JDBC");
             Connection con = DriverManager.getConnection("JDBC:sqlite:gameDb.db");
             System.out.println("Connected!");
+            return con;
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return con;
+        return null;
     }
 
     public int getHighscore(String User) {
         try {
-            con = connect();
-            stm = con.createStatement();
+            Connection con = connect();
+            Statement stm = con.createStatement();
             String sql = "SELECT Highscore FROM Scores WHERE User = " + User;
-            res = stm.executeQuery(sql);
+            ResultSet res = stm.executeQuery(sql);
 
             highscore = res.getInt("Highscore");
 
@@ -38,15 +37,15 @@ public class Database {
             stm.close();
             con.close();
 
-        } catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("User nicht vorhanden!");
         }
         return highscore;
     }
 
-    public void updateHighscore(String User){
-        if(score > getHighscore(currentUser)) {
-            try {
+    public void updateHighscore(String User) {
+        try {
+            if (score > getHighscore(currentUser)) {
                 Connection con = connect();
                 Statement stm = con.createStatement();
                 String sql = "UPDATE Highscore FROM Scores WHERE User = " + User;
@@ -54,10 +53,10 @@ public class Database {
 
                 stm.close();
                 con.close();
-            } else{
+            } else {
                 score = 0;
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -72,12 +71,12 @@ public class Database {
             stm.close();
             con.close();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void selectUser(){
+    public void selectUser() {
 
     }
 }
