@@ -12,8 +12,7 @@ import project.input.KeyboardEntityController;
 public class Player extends Creature {
 
     public Player() {
-        super("player.tsx");
-        setMapId(0);
+        super("player");
         setVisible(true);
         KeyboardEntityController<Player> keyboard = new KeyboardEntityController<>(this);
         addController(keyboard);
