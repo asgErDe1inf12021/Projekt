@@ -4,7 +4,7 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import project.input.KeyboardEntityController;
 
-@EntityInfo(width = 32, height = 32)
+@EntityInfo(width = 132, height = 140)
 public class Player extends Creature {
 
     public Player() {
