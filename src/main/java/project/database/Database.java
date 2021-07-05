@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class Database {
 
-    int score;
-    int highscore;
-    String currentUser;
+    static int score;
+    static int highscore;
+    static String currentUser;
 
     public Database() {
         score = 12345;
@@ -77,6 +77,10 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int getScore(){
+        return score;
     }
 
     public void selectUser() {
