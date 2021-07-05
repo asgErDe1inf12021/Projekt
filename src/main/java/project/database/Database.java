@@ -13,6 +13,7 @@ public class Database {
         currentUser = "Nick";
         getHighscore(currentUser);
         updateHighscore(currentUser);
+        updateScore(1);
     }
 
     public Connection connect() {
@@ -81,6 +82,12 @@ public class Database {
 
     public static int getScore(){
         return score;
+    }
+
+    public static void updateScore(int add){
+        while(true){
+            score = score + add;
+        }
     }
 
     public void selectUser() {
