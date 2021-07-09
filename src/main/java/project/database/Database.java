@@ -1,19 +1,20 @@
 package project.database;
 
+import project.render.TestScreen;
+
 import java.sql.*;
 
 public class Database {
 
-    static int score;
-    static int highscore;
-    static String currentUser;
+    int score;
+    int highscore;
+    String currentUser;
 
     public Database() {
-        score = 12345;
-        currentUser = "Nick";
+        score = 0;
+        currentUser = selectUser();
         getHighscore(currentUser);
         updateHighscore(currentUser);
-        updateScore(1);
     }
 
     public Connection connect() {
@@ -28,11 +29,11 @@ public class Database {
         return null;
     }
 
-    public int getHighscore() {
+    public int getHighscore(String username) {
         try {
             Connection con = connect();
             Statement stm = con.createStatement();
-            String sql = "SELECT Highscore FROM Scores WHERE User = '"+currentUser+"'";
+            String sql = "SELECT Highscore FROM Scores WHERE User = '"+username+"'";
             ResultSet res = stm.executeQuery(sql);
 
             highscore = res.getInt(1);
@@ -47,13 +48,13 @@ public class Database {
         return highscore;
     }
 
-    public void updateHighscore(String User) {
+    public void updateHighscore(String username) {
         try {
-            if (score > getHighscore(currentUser)) {
+            if (score > getHighscore(username)) {
                 Connection con = connect();
                 Statement stm = con.createStatement();
-                String sql = "UPDATE Scores SET Highscore = '" + score + "' WHERE User = '" + currentUser + "'";
-                stm.executeQuery(sql);
+                String sql = "UPDATE Scores SET Highscore = '" + score + "' WHERE User = '" + username + "'";
+                stm.execute(sql);
 
                 stm.close();
                 con.close();
@@ -80,17 +81,21 @@ public class Database {
         }
     }
 
-    public static int getScore(){
+    public int getScore(){
         updateScore(1);
         return score;
     }
 
-    public static void updateScore(int add){
+    public String getCurrentUser(){
+        return currentUser;
+    }
+
+    public void updateScore(int add){
         score = score + add;
     }
 
     public void selectUser() {
-
+        currentUser = "Nick";
     }
 }
 
