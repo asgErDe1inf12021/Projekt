@@ -9,7 +9,7 @@ public class Database {
     static String currentUser;
 
     public Database() {
-        score = 12345;
+        score = 0;
         currentUser = "Nick";
         getHighscore(currentUser);
         updateHighscore(currentUser);
@@ -28,11 +28,11 @@ public class Database {
         return null;
     }
 
-    public int getHighscore() {
+    public int getHighscore(String user) {
         try {
             Connection con = connect();
             Statement stm = con.createStatement();
-            String sql = "SELECT Highscore FROM Scores WHERE User = '"+currentUser+"'";
+            String sql = "SELECT Highscore FROM Scores WHERE User = '"+user+"'";
             ResultSet res = stm.executeQuery(sql);
 
             highscore = res.getInt(1);
@@ -49,10 +49,10 @@ public class Database {
 
     public void updateHighscore(String User) {
         try {
-            if (score > getHighscore(currentUser)) {
+            if (score > getHighscore(User)) {
                 Connection con = connect();
                 Statement stm = con.createStatement();
-                String sql = "UPDATE Scores SET Highscore = '" + score + "' WHERE User = '" + currentUser + "'";
+                String sql = "UPDATE Scores SET Highscore = '" + score + "' WHERE User = '" + User + "'";
                 stm.executeQuery(sql);
 
                 stm.close();

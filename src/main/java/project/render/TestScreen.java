@@ -13,7 +13,7 @@ public class TestScreen extends GameScreen {
 
     public TestScreen() {
         super("TEST");
-        block = new Block();
+        //block = new Block();
     }
 
     @Override
