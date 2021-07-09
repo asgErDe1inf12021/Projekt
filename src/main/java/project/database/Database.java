@@ -6,9 +6,9 @@ import java.sql.*;
 
 public class Database {
 
-    int score;
-    int highscore;
-    String currentUser;
+    static int score;
+    static int highscore;
+    static String currentUser;
 
     public Database() {
         score = 0;
@@ -43,6 +43,7 @@ public class Database {
             con.close();
 
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("User nicht vorhanden!");
         }
         return highscore;
@@ -81,12 +82,12 @@ public class Database {
         }
     }
 
-    public int getScore(){
+    public static int getScore(){
         updateScore(1);
         return score;
     }
 
-    public String getCurrentUser(){
+    public static String getCurrentUser(){
         return currentUser;
     }
 
