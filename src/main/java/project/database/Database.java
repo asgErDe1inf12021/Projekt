@@ -42,6 +42,7 @@ public class Database {
             con.close();
 
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("User nicht vorhanden!");
         }
         return highscore;
@@ -53,7 +54,7 @@ public class Database {
                 Connection con = connect();
                 Statement stm = con.createStatement();
                 String sql = "UPDATE Scores SET Highscore = '" + score + "' WHERE User = '" + User + "'";
-                stm.executeQuery(sql);
+                stm.execute(sql);
 
                 stm.close();
                 con.close();
