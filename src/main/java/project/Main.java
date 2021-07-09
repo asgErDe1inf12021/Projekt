@@ -21,7 +21,7 @@ public class Main {
         Game.init(args);
         Game.world().loadEnvironment("test.tmx");
         Game.start();
-        Resources.load("player.tsx");
+        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 132, 140));
         Game.world().environment().add(new Player());
         //Game.world().camera().pan(10000, 10000, 1000);
     }
