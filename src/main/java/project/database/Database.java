@@ -28,14 +28,14 @@ public class Database {
         return null;
     }
 
-    public int getHighscore(String User) {
+    public int getHighscore() {
         try {
             Connection con = connect();
             Statement stm = con.createStatement();
-            String sql = "SELECT Highscore FROM Scores WHERE User = " + User;
+            String sql = "SELECT Highscore FROM Scores WHERE User = '"+currentUser+"'";
             ResultSet res = stm.executeQuery(sql);
 
-            highscore = res.getInt("Highscore");
+            highscore = res.getInt(1);
 
             res.close();
             stm.close();
@@ -52,7 +52,7 @@ public class Database {
             if (score > getHighscore(currentUser)) {
                 Connection con = connect();
                 Statement stm = con.createStatement();
-                String sql = "UPDATE Highscore FROM Scores WHERE User = " + User;
+                String sql = "UPDATE Scores SET Highscore = '" + score + "' WHERE User = '" + currentUser + "'";
                 stm.executeQuery(sql);
 
                 stm.close();
@@ -69,7 +69,7 @@ public class Database {
         try {
             Connection con = connect();
             Statement stm = con.createStatement();
-            String sql = "INSERT INTO Scores(User) VALUES(" + username + ", 0)";
+            String sql = "INSERT INTO Scores(User) VALUES('" + username +"')";
             stm.executeQuery(sql);
 
             stm.close();
@@ -81,13 +81,12 @@ public class Database {
     }
 
     public static int getScore(){
+        updateScore(1);
         return score;
     }
 
     public static void updateScore(int add){
-        while(true){
-            score = score + add;
-        }
+        score = score + add;
     }
 
     public void selectUser() {
