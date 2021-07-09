@@ -1,14 +1,10 @@
 package project;
 
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.environment.tilemap.xml.Tileset;
-import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.resources.Resources;
 import project.entities.Player;
 import project.logic.GameState;
 import project.save.api.Api;
-
-import java.awt.image.BufferedImage;
 
 public class Main {
 
