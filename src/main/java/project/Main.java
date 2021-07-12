@@ -17,7 +17,6 @@ public class Main {
         Game.init(args);
         Game.world().loadEnvironment("stoneMap.tmx");
         Game.start();
-        Game.world().camera().setClampToMap(true);
         Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 132, 140));
         Resources.spritesheets().add("bush-idle-planted", Resources.spritesheets().load("bush-angry.png", 36, 39));
         Game.world().environment().add(new Player());
