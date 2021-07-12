@@ -44,7 +44,8 @@ public class KeyboardEntityController<T extends IMobileEntity> extends MovementC
         } else if (this.right.contains(keyCode.getKeyCode())) {            // getDx, getDy tells the current coodinates of the character.
             this.setDx(this.getDx() + 1);                                    // setDx, setDy sets the coodinates of the character.
         }
-        Game.world().camera().setFocus(getEntity().getX(), getEntity().getY());
+        // Game.world().camera().pan(getEntity().getCenter(), 60); // smooth camera motion
+        Game.world().camera().setFocus(getEntity().getCenter()); // no smooth camera motion
     }
 
     public void addUpKey(int keyCode) {
