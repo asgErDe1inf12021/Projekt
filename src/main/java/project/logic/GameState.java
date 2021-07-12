@@ -25,7 +25,7 @@ public class GameState implements GameListener {
 
     @Override
     public boolean terminating() {
-        database.updateHighscore(Database.getCurrentUser());
+        database.updateHighscore(database.getCurrentUser(),database.getScore());
         return true;
     }
 

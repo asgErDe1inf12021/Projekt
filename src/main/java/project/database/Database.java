@@ -13,15 +13,12 @@ public class Database {
     public Database() {
         score = 0;
         currentUser = selectUser();
-        getHighscore(currentUser);
-        updateHighscore(currentUser);
     }
 
     public static Connection connect() {
         try {
             Class.forName("org.sqlite.JDBC");
             Connection con = DriverManager.getConnection("JDBC:sqlite:gameDb.db");
-            System.out.println("Connected!");
             return con;
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -49,18 +46,16 @@ public class Database {
         return highscore;
     }
 
-    public static void updateHighscore(String username) {
+    public static void updateHighscore(String username,int value) {
         try {
             if (score > getHighscore(username)) {
                 Connection con = connect();
                 Statement stm = con.createStatement();
-                String sql = "UPDATE Scores SET Highscore = '" + score + "' WHERE User = '" + username + "'";
+                String sql = "UPDATE Scores SET Highscore = '" + value + "' WHERE User = '" + username + "'";
                 stm.execute(sql);
 
                 stm.close();
                 con.close();
-            } else {
-                score = 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -82,6 +77,20 @@ public class Database {
         }
     }
 
+    public static void resetHighscore(){
+        updateHighscore(currentUser,0);
+    }
+
+    public static void deleteUser(String username){
+        try {
+            Connection con = connect();
+            Statement stm = con.createStatement();
+            String sql = "DELETE FROM Scores WHERE User = '" + username + "'";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static int getScore(){
         updateScore(1);
         return score;
@@ -92,7 +101,7 @@ public class Database {
     }
 
     public static void updateScore(int add){
-        score = score + add;
+        score += add;
     }
 
     public static String selectUser() {

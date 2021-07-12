@@ -10,6 +10,8 @@ import java.awt.*;
 
 public class TestScreen extends GameScreen {
     private Block block;
+    Database database = new Database();
+
 
     public TestScreen() {
         super("TEST");
@@ -21,6 +23,14 @@ public class TestScreen extends GameScreen {
         super.render(g);
         g.setColor(Color.white);
         TextRenderer.render(g, ""+Game.loop().getTickRate(), 5, 15);
+
+        //Score Anzeige
         TextRenderer.render(g,"Score: " + Database.getScore(),100,15);
+
+        if(database.getScore() > database.getHighscore(database.getCurrentUser())) {
+            TextRenderer.render(g, "Highscore: " + database.getScore(), 185, 15);
+        } else {
+            TextRenderer.render(g, "Highscore: " + database.getHighscore(database.getCurrentUser()),185,15);
+        }
     }
 }
