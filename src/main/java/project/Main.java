@@ -15,7 +15,7 @@ public class Main {
         Api.Api = new project.save.implementation.Api();
         Game.addGameListener(new GameState());
         Game.init(args);
-        Game.world().loadEnvironment("test.tmx");
+        Game.world().loadEnvironment("Stone-Map.tmx");
         Game.start();
         Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 132, 140));
         Resources.spritesheets().add("bush-idle-planted", Resources.spritesheets().load("bush-angry.png", 36, 39));
