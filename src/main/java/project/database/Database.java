@@ -17,7 +17,7 @@ public class Database {
         updateHighscore(currentUser);
     }
 
-    public Connection connect() {
+    public static Connection connect() {
         try {
             Class.forName("org.sqlite.JDBC");
             Connection con = DriverManager.getConnection("JDBC:sqlite:gameDb.db");
@@ -29,7 +29,7 @@ public class Database {
         return null;
     }
 
-    public int getHighscore(String username) {
+    public static int getHighscore(String username) {
         try {
             Connection con = connect();
             Statement stm = con.createStatement();
@@ -49,7 +49,7 @@ public class Database {
         return highscore;
     }
 
-    public void updateHighscore(String username) {
+    public static void updateHighscore(String username) {
         try {
             if (score > getHighscore(username)) {
                 Connection con = connect();
@@ -67,7 +67,7 @@ public class Database {
         }
     }
 
-    public void insertUser(String username) {
+    public static void insertUser(String username) {
         try {
             Connection con = connect();
             Statement stm = con.createStatement();
@@ -91,12 +91,12 @@ public class Database {
         return currentUser;
     }
 
-    public void updateScore(int add){
+    public static void updateScore(int add){
         score = score + add;
     }
 
-    public void selectUser() {
-        currentUser = "Nick";
+    public static String selectUser() {
+        return "Nick";
     }
 }
 
