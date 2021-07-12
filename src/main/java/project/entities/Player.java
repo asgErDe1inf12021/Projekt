@@ -15,7 +15,6 @@ public class Player extends Creature {
 
     public Player() {
         super("player");
-        setVisible(true);
         animations().scaleSprite(0.25F);
         KeyboardEntityController<Player> keyboard = new KeyboardEntityController<>(this);
         addController(keyboard);
