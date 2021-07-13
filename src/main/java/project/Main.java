@@ -17,9 +17,8 @@ public class Main {
         Game.init(args);
         Game.world().loadEnvironment("Stone-Map.tmx");
         Game.start();
-        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 132, 140));
+        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 33, 35));
         Resources.spritesheets().add("bush-idle-planted", Resources.spritesheets().load("bush-angry.png", 36, 39));
         Game.world().environment().add(new Player());
-        //Game.world().camera().pan(10000, 10000, 1000);
     }
 }
