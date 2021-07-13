@@ -17,6 +17,7 @@ public class Main {
         Game.init(args);
         Game.world().loadEnvironment("stoneMap.tmx");
         Game.world().camera().setClampToMap(true);
+        Game.window().setTitle("The game without a name");
         // Game.world().getEnvironment("stoneMap.tmx"). // useful for reading data from tmx
         Game.start();
         Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 132, 140));
