@@ -16,8 +16,8 @@ public class Main {
         Game.addGameListener(new GameState());
         Game.init(args);
         Game.world().loadEnvironment("Stone-Map.tmx");
-        Game.start();
         loadSpritesheets();
+        Game.start();
         Game.world().environment().add(new Player());
     }
 
