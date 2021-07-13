@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gameinfo>
+    <name>Unnamed Game</name>
+    <subTitle>A game without a name</subTitle>
+    <description>A game, that didn't get a name yet, cause the creators were too lazy</description>
+    <website>https://specktulatius.github.io/pups.html</website>
+    <version>v1.0.0</version>
+    <company>1inf1.2021.asger.de</company>
+    <developer>Marian Jakob Schönbeck</developer>
+    <developer>Arne Langheld</developer>
+    <developer>Nick Lehner</developer>
+    <developer>Lisa Murglat</developer>
+    <developer>Jan Paul Speckter</developer>
+</gameinfo>
