@@ -4,7 +4,10 @@
 *.class
 
 # Log file
-*.log
+*.log*
+
+#lock file
+*.lck
 
 # BlueJ files
 *.ctxt
@@ -25,8 +28,6 @@
 hs_err_pid*
 
 crash.txt
-game.log
-game.log.lck
 
 /target/
 /Projekt.iml
