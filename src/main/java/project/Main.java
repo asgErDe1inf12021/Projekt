@@ -17,14 +17,13 @@ public class Main {
         Api.Api = new project.save.implementation.Api();
         Game.addGameListener(new GameState());
         Game.init(args);
-        Game.world().loadEnvironment("test.tmx");
+        Game.world().loadEnvironment("Stone-Map.tmx");
         Game.start();
-        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 132, 140));
+        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 33, 35));
         Resources.spritesheets().add("bush-idle-down", Resources.spritesheets().load("bush.png", 24, 24));
         Resources.spritesheets().add("bush-angry-idle-down", Resources.spritesheets().load("bush-angry.png", 36, 39));
         Game.world().environment().add(new Player());
         Game.world().environment().add(new Bush());
         Game.world().environment().add(new AngryBush());
-        //Game.world().camera().pan(10000, 10000, 1000);
     }
 }

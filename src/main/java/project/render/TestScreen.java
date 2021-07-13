@@ -3,16 +3,13 @@ package project.render;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.TextRenderer;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
-import project.entities.Block;
 
 import java.awt.*;
 
 public class TestScreen extends GameScreen {
-    private Block block;
 
     public TestScreen() {
         super("TEST");
-        //block = new Block();
     }
 
     @Override
