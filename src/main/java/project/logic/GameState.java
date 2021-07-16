@@ -3,6 +3,7 @@ package project.logic;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.GameListener;
 import project.database.Database;
+import project.render.MenuScreen;
 import project.render.TestScreen;
 
 public class GameState implements GameListener {
@@ -20,7 +21,8 @@ public class GameState implements GameListener {
 
     @Override
     public void started() {
-        Game.screens().add(new TestScreen());
+        Game.screens().add(new MenuScreen());
+        //Game.screens().add(new TestScreen());
     }
 
     @Override
