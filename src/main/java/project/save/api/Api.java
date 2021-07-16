@@ -5,6 +5,9 @@ import java.util.HashMap;
 public abstract class Api {
     public static Api Api;
 
+    public abstract void load();
+    public abstract void save();
+
     public abstract void registerObject(String name, SerializableFactory<?> serializableFactory);
 
     public abstract Storage saveObject(Serializable serializable);

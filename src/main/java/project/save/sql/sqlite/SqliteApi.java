@@ -1,29 +1,51 @@
-package project.save.implementation;
+package project.save.sql.sqlite;
 
 import project.save.api.Serializable;
 import project.save.api.Storage;
 import project.save.implementation.storage.ObjectStorage;
 import project.save.implementation.storage.primitive.*;
+import project.save.sql.SqlApi;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
-public class Api extends project.save.api.Api {
+public class SqliteApi extends SqlApi {
 
     private final HashMap<String, SerializableFactory<?>> deserializers = new HashMap<>();
 
-    public Api() {
-        System.out.println("Using Simple Config Api");
+    public SqliteApi() {
+        System.out.println("Using Sqlite Config Api");
+        try {
+            Class.forName("org.sqlite.JDBC");
+            CONNECTION = DriverManager.getConnection("JDBC:sqlite:gameDb.db");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection().nativeSQL("");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void load() {}
+    public void load() {
+        //TODO load objects from Database
+    }
 
     @Override
-    public void save() {}
+    public void save() {
+        for(Map.Entry<String, SerializableFactory<?>> entry: deserializers.entrySet()) {
+            String id = entry.getKey();
+            SerializableFactory<?> object;
+        }
+    }
 
     @Override
     public void registerObject(String name, SerializableFactory<?> serializableFactory) {
-        if(deserializers.containsKey(name)) return;
+        if (deserializers.containsKey(name)) return;
         deserializers.put(name, serializableFactory);
     }
 

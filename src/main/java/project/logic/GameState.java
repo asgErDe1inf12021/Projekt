@@ -4,6 +4,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.GameListener;
 import project.database.Database;
 import project.render.TestScreen;
+import project.save.api.Api;
 
 public class GameState implements GameListener {
 
@@ -16,6 +17,7 @@ public class GameState implements GameListener {
     @Override
     public void initialized(String... args) {
         Game.setInfo("gameInfo.xml");
+        Api.Api.load();
     }
 
     @Override
@@ -25,7 +27,7 @@ public class GameState implements GameListener {
 
     @Override
     public boolean terminating() {
-        database.updateHighscore(database.getCurrentUser(),database.getScore());
+        Api.Api.save();
         return true;
     }
 
