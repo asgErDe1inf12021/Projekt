@@ -2,7 +2,6 @@ package project;
 
 import de.gurkenlabs.litiengine.Game;
 import project.save.api.Api;
-import project.database.Database;
 import project.logic.GameState;
 
 public class Main {
@@ -16,7 +15,6 @@ public class Main {
         Game.init(args);
         Game.world().loadEnvironment("test.tmx");
         Game.start();
-        Database db = new Database();
         Game.world().camera().pan(10000, 10000, 1000);
     }
 }
