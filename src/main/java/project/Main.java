@@ -6,9 +6,6 @@ import project.entities.Player;
 import project.logic.GameState;
 import project.save.api.Api;
 
-import project.GUI.main_menu.menu;
-import project.config.api.Api;
-
 public class Main {
     /**
      * @param args
