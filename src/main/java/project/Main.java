@@ -13,7 +13,7 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        Api.Api = new SqliteApi();
+        Api.Api = new SqliteApi("gameDb.db");
         Game.addGameListener(new GameState());
         Game.init(args);
         Game.world().loadEnvironment("Stone-Map.tmx");

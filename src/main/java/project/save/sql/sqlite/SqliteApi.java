@@ -15,11 +15,11 @@ public class SqliteApi extends SqlApi {
 
     private final HashMap<String, SerializableFactory<?>> deserializers = new HashMap<>();
 
-    public SqliteApi() {
+    public SqliteApi(String database) {
         System.out.println("Using Sqlite Config Api");
         try {
             Class.forName("org.sqlite.JDBC");
-            CONNECTION = DriverManager.getConnection("JDBC:sqlite:gameDb.db");
+            CONNECTION = DriverManager.getConnection("JDBC:sqlite:"+database);
             SqlApi.setupTables();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
