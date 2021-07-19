@@ -14,13 +14,13 @@ public class Main {
      */
     public static void main(String[] args) {
         Api.Api = new SqliteApi();
-        SaveState.newGame();
         Game.addGameListener(new GameState());
         Game.init(args);
         Game.world().loadEnvironment("Stone-Map.tmx");
         Game.start();
         Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 33, 35));
         Resources.spritesheets().add("bush-idle-planted", Resources.spritesheets().load("bush-angry.png", 36, 39));
+        SaveState.newGame();
         SaveState.getInstance().initGame();
         SaveState.getInstance().saveGame();
     }

@@ -32,7 +32,8 @@ public class SaveState {
     }
 
     public void saveGame() {
-        Api.Api.registerObject("test", (Api.SerializableFactory<?>) player);
-        Api.Api.readObject(Api.Api.saveObject(player));
+        Api.Api.registerObject("player", Player::new);
+        Storage p = Api.Api.saveObject(player);
+        Api.Api.readObject(p);
     }
 }

@@ -8,10 +8,12 @@ import java.util.HashMap;
 public class ObjectStorage extends Storage {
     private final HashMap<String, Storage> serializedObject;
     private final String identifier;
+    private final String className;
 
-    public ObjectStorage(String identifier, Serializable serializable) {
+    public ObjectStorage(String identifier, Serializable serializable, String className) {
         serializedObject = serializable.serialize();
         this.identifier = identifier;
+        this.className = className;
     }
 
     @Override
@@ -21,5 +23,9 @@ public class ObjectStorage extends Storage {
 
     public String getIdentifier() {
         return identifier;
+    }
+
+    public String getClassName() {
+        return className;
     }
 }

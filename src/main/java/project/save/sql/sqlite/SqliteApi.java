@@ -2,9 +2,9 @@ package project.save.sql.sqlite;
 
 import project.save.api.Serializable;
 import project.save.api.Storage;
-import project.save.implementation.storage.ObjectStorage;
-import project.save.implementation.storage.primitive.*;
 import project.save.sql.SqlApi;
+import project.save.sql.storage.ObjectStorage;
+import project.save.sql.storage.primitive.*;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -51,13 +51,13 @@ public class SqliteApi extends SqlApi {
 
     @Override
     public Storage saveObject(Serializable serializable) {
-        return new ObjectStorage(serializable.getIdentifier(), serializable);
+        return new ObjectStorage(serializable.getIdentifier(), serializable, serializable.getClassName());
     }
 
     @Override
     public Serializable readObject(Storage storage) {
         ObjectStorage objectStorage = (ObjectStorage) storage;
-        return (Serializable) deserializers.get((objectStorage).getIdentifier()).create(objectStorage.read());
+        return (Serializable) deserializers.get((objectStorage).getClassName()).create(objectStorage.read());
     }
 
     @Override

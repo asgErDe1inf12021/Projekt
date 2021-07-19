@@ -11,5 +11,5 @@ public interface Serializable {
 
     String getIdentifier();
 
-    void load(HashMap<String, Storage> from);
+    String getClassName();
 }

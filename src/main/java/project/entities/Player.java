@@ -53,9 +53,7 @@ public class Player extends Creature implements Serializable {
     }
 
     @Override
-    public void load(HashMap<String, Storage> from) {
-        Storage X = from.get("x");
-        Storage Y = from.get("y");
-        setLocation((Double) X.read(), (Double) Y.read());
+    public String getClassName() {
+        return "player";
     }
 }
