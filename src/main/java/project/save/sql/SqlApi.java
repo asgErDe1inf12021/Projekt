@@ -21,7 +21,7 @@ public abstract class SqlApi extends project.save.api.Api {
         connection().createStatement().execute("CREATE TABLE IF NOT EXISTS ObjectStorageLink (" +
                 "Identifier TEXT NOT NULL," +
                 "storedObject TEXT NOT NULL," +
-                "isSimple boolean DEFAULT false," +
+                "isSimple boolean NOT NULL," +
                 "FOREIGN KEY (Identifier)" +
                 "   REFERENCES ObjectStorage (Identifier)" +
                 "      ON DELETE CASCADE" +
