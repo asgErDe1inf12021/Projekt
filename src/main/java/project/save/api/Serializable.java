@@ -10,4 +10,6 @@ public interface Serializable {
     HashMap<String, Storage> serialize();
 
     String getIdentifier();
+
+    void load(HashMap<String, Storage> from);
 }
