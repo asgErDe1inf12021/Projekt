@@ -41,8 +41,8 @@ public class Player extends Creature implements Serializable {
     @Override
     public HashMap<String, Storage> serialize() {
         HashMap<String, Storage> map = new HashMap<>();
-        map.put("X", Api.Api.saveDouble(getLocation().getX()));
-        map.put("Y", Api.Api.saveDouble(getLocation().getY()));
+        map.put("x", Api.Api.saveDouble(getLocation().getX()));
+        map.put("y", Api.Api.saveDouble(getLocation().getY()));
         map.put("Identifier", Api.Api.saveString(Identifier));
         return map;
     }
