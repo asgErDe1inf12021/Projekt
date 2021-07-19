@@ -1,18 +1,18 @@
 package project.render;
 
-import de.gurkenlabs.litiengine.GameListener;
+import de.gurkenlabs.litiengine.Align;
+import de.gurkenlabs.litiengine.Valign;
+import de.gurkenlabs.litiengine.graphics.TextRenderer;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
+
 
 public class MenuScreen extends Screen {
 
-    private double height;
-    private double width;
 
     private ActionListener newGameListener = new ActionListener() {
         @Override
@@ -50,6 +50,16 @@ public class MenuScreen extends Screen {
         // This method is called on every tick and lets you draw shapes, text, images etc. explicitly.
         // Calling super.render(g) also renders all GuiComponents in this.getComponents()
         super.render(g);
+
+        g.setFont(new Font(Font.SERIF,Font.PLAIN,60));
+        TextRenderer.render(g,"Title", Align.CENTER, Valign.TOP,0,50);
+
+        Button newGame = new Button("New Game");
+        newGame.setBounds((int) this.getWidth()/2, 200, 800,200);
+        newGame.addActionListener(newGameListener);
+        //wie render???
+
+
     }
 
     @Override
@@ -57,36 +67,7 @@ public class MenuScreen extends Screen {
         // This method is called once by the Screen's constructor. Use it to initialize the GuiComponents that will be contained by this screen.
         // Don't forget to call this.getComponents().add(GuiComponent c) so that the components will actually be rendered.
 
-        this.width = 1920;
-        this.height = 1080;
-
-        JFrame menuFrame = new JFrame("Main Menu");
-        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuFrame.setSize(1920,1080);
-        menuFrame.setLayout(null);
-
-        JLabel title = new JLabel("...Title...");
-        title.setBounds(960-350,100,700,100);
-        title.setFont(new Font(Font.SERIF,Font.PLAIN,100));
-
-        JButton newGame = new JButton("New Game");
-        newGame.setBounds(960 - 350, 300,700,100);
-        newGame.addActionListener(newGameListener);
-
-        JButton loadGame = new JButton("Load Game");
-        loadGame.setBounds(960-350, 500,700,100);
-        loadGame.addActionListener(loadGameListener);
-
-        JButton settings = new JButton("Settings");
-        settings.setBounds(960 - 350, 700,700,100);
-        settings.addActionListener(settingsListener);
-
-        menuFrame.add(title);
-        menuFrame.add(newGame);
-        menuFrame.add(loadGame);
-        menuFrame.add(settings);
-
-        menuFrame.setVisible(true);
+        JFrame menuFrame;
 
         super.initializeComponents();
     }
