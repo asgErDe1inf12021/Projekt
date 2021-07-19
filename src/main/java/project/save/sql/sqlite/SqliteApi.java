@@ -20,12 +20,8 @@ public class SqliteApi extends SqlApi {
         try {
             Class.forName("org.sqlite.JDBC");
             CONNECTION = DriverManager.getConnection("JDBC:sqlite:gameDb.db");
+            SqlApi.setupTables();
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            Connection().nativeSQL("");
-        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
