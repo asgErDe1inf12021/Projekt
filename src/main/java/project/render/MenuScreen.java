@@ -3,6 +3,8 @@ package project.render;
 import de.gurkenlabs.litiengine.Align;
 import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.graphics.TextRenderer;
+import de.gurkenlabs.litiengine.gui.GuiComponent;
+import de.gurkenlabs.litiengine.gui.TextFieldComponent;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 
 import javax.swing.*;
@@ -13,6 +15,7 @@ import java.awt.event.ActionListener;
 
 public class MenuScreen extends Screen {
 
+    TextFieldComponent newGame;
 
     private ActionListener newGameListener = new ActionListener() {
         @Override
@@ -51,14 +54,9 @@ public class MenuScreen extends Screen {
         // Calling super.render(g) also renders all GuiComponents in this.getComponents()
         super.render(g);
 
-        g.setFont(new Font(Font.SERIF,Font.PLAIN,60));
-        TextRenderer.render(g,"Title", Align.CENTER, Valign.TOP,0,50);
-
-        Button newGame = new Button("New Game");
-        newGame.setBounds((int) this.getWidth()/2, 200, 800,200);
-        newGame.addActionListener(newGameListener);
-        //wie render???
-
+        if(newGame.isPressed()){
+            System.out.println("Clicked!!!");
+        }
 
     }
 
@@ -67,8 +65,9 @@ public class MenuScreen extends Screen {
         // This method is called once by the Screen's constructor. Use it to initialize the GuiComponents that will be contained by this screen.
         // Don't forget to call this.getComponents().add(GuiComponent c) so that the components will actually be rendered.
 
-        JFrame menuFrame;
-
+        newGame = new TextFieldComponent(0,0,600,100,"New Game");
         super.initializeComponents();
+        this.getComponents().add(newGame);
+
     }
 }
