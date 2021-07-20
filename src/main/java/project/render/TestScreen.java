@@ -8,8 +8,6 @@ import project.database.Database;
 import java.awt.*;
 
 public class TestScreen extends GameScreen {
-    Database database = new Database();
-
 
     public TestScreen() {
         super("TEST");
@@ -24,10 +22,10 @@ public class TestScreen extends GameScreen {
         //Score Anzeige
         TextRenderer.render(g,"Score: " + Database.getScore(),100,15);
 
-        if(database.getScore() > database.getHighscore(database.getCurrentUser())) {
-            TextRenderer.render(g, "Highscore: " + database.getScore(), 185, 15);
+        if(Database.getScore() > Database.getHighscore(Database.getCurrentUser())) {
+            TextRenderer.render(g, "Highscore: " + Database.getScore(), 185, 15);
         } else {
-            TextRenderer.render(g, "Highscore: " + database.getHighscore(database.getCurrentUser()),185,15);
+            TextRenderer.render(g, "Highscore: " + Database.getHighscore(Database.getCurrentUser()),185,15);
         }
     }
 }

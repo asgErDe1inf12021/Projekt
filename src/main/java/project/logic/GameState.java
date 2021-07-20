@@ -9,16 +9,11 @@ import project.save.api.SaveState;
 
 public class GameState implements GameListener {
 
-    static Database database;
-
-    public GameState(){
-        database = new Database();
-    }
+    public GameState(){}
 
     @Override
     public void initialized(String... args) {
         Game.setInfo("gameInfo.xml");
-        Api.Api.load();
     }
 
     @Override

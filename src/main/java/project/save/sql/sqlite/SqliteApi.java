@@ -28,11 +28,6 @@ public class SqliteApi extends SqlApi {
         }
     }
 
-    @Override
-    public void load() {
-        //TODO probably not here too
-    }
-
     public Serializable loadObject(String id) {
         String className;
         try {
