@@ -22,10 +22,11 @@ public class Main {
         Game.world().loadEnvironment("Stone-Map.tmx");
         Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 33, 35));
         Resources.spritesheets().add("bush-idle-planted", Resources.spritesheets().load("bush-angry.png", 36, 39));
-        Game.start();
 
         SaveState.continueGame("SaveName");//would be selected from menu
+        //SaveState.newGame("SaveName");
         SaveState.getInstance().initGame();
+        Game.start();
     }
 
     public static void registerSerializables() {

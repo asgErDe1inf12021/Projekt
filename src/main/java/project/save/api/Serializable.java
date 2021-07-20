@@ -9,7 +9,5 @@ public interface Serializable {
      */
     HashMap<String, Storage> serialize();
 
-    String getIdentifier();
-
     String getClassName();
 }

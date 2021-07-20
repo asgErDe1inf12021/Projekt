@@ -18,13 +18,17 @@ public class SaveState implements Serializable {
     }
 
     public static void newGame() {
-        Instance = new SaveState(IdentifierProvider.newIdentifier());
+        newGame(IdentifierProvider.newIdentifier());
+    }
+
+    public static void newGame(String name) {
+        Instance = new SaveState(name);
         Instance.player = new Player();
     }
 
     public static void continueGame(String id) {
         Instance = new SaveState(id);
-        Instance.player = new Player();//TODO load from database
+        Instance.player = (Player) ((SqliteApi) Api.Api).loadObject(id+".player");
     }
 
     public void initGame() {
@@ -36,7 +40,7 @@ public class SaveState implements Serializable {
     }
 
     public void saveGame() {
-        ((SqliteApi) Api.Api).saveObjectToDB("", id, (ObjectStorage) Api.Api.saveObject(this));
+        ((SqliteApi) Api.Api).saveObjectToDB("Saves", id, (ObjectStorage) Api.Api.saveObject(this));
     }
 
     @Override
@@ -44,11 +48,6 @@ public class SaveState implements Serializable {
         HashMap<String, Storage> map = new HashMap<>();
         map.put("player", Api.Api.saveObject(player));
         return map;
-    }
-
-    @Override
-    public String getIdentifier() {
-        return id;
     }
 
     @Override

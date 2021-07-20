@@ -8,6 +8,7 @@ import project.save.sql.storage.PrimitiveStorage;
 import project.save.sql.storage.primitive.*;
 
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,29 @@ public class SqliteApi extends SqlApi {
     @Override
     public void load() {
         //TODO probably not here too
+    }
+
+    public Serializable loadObject(String id) {
+        String className;
+        try {
+            className = connection().createStatement().executeQuery("SELECT classname FROM ObjectStorage WHERE Identifier ='"+id+"'").getString("className");
+        } catch(SQLException e) {
+            throw new IllegalStateException("cannot find Object with id "+id);
+        }
+        if(!deserializers.containsKey(className)) throw new IllegalStateException("There is no Serializers registered under "+className);
+        HashMap<String, Storage> map = new HashMap<>();
+        try {
+            ResultSet resultSet = connection().createStatement().executeQuery("SELECT storedObject, type, data FROM ObjectStorageLink INNER JOIN PrimitiveStorage ON storedObject = PrimitiveStorage.Identifier WHERE ObjectStorageLink.Identifier ='"+id+"'");
+            while(resultSet.next()) {
+                String name = resultSet.getString("storedObject");
+                String type = resultSet.getString("type");
+                String value = resultSet.getString("data");
+                map.put(name.substring(id.length()+1), saveAny(type, value));
+            }
+        } catch(SQLException e) {
+            throw new IllegalStateException("failed to load Object with id "+id);
+        }
+        return (Serializable) deserializers.get(className).create(map);
     }
 
     public void saveObjectToDB(String parentIdentifier, String identifier, ObjectStorage storage) {
@@ -68,7 +92,7 @@ public class SqliteApi extends SqlApi {
 
     @Override
     public Storage saveObject(Serializable serializable) {
-        return new ObjectStorage(serializable.getIdentifier(), serializable, serializable.getClassName());
+        return new ObjectStorage(serializable, serializable.getClassName());
     }
 
     @Override
@@ -100,6 +124,21 @@ public class SqliteApi extends SqlApi {
     @Override
     public Storage saveString(String s) {
         return new StringStorage(s);
+    }
+
+    public Storage saveAny(String type, String value) {
+        switch(type) {
+            case "Integer":
+                return saveInt(Integer.parseInt(value));
+            case "Boolean":
+                return saveBoolean(Boolean.parseBoolean(value));
+            case "Double":
+                return saveDouble(Double.parseDouble(value));
+            case "Float":
+                return saveFloat(Float.parseFloat(value));
+            default:
+                return saveString(value);
+        }
     }
 
     @Override
