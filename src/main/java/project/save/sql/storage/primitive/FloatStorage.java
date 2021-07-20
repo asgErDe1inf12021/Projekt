@@ -13,4 +13,9 @@ public class FloatStorage extends PrimitiveStorage {
     public Float read() {
         return f;
     }
+
+    @Override
+    public String getType() {
+        return "Float";
+    }
 }

@@ -4,6 +4,7 @@ import project.save.api.Serializable;
 import project.save.api.Storage;
 import project.save.sql.SqlApi;
 import project.save.sql.storage.ObjectStorage;
+import project.save.sql.storage.PrimitiveStorage;
 import project.save.sql.storage.primitive.*;
 
 import java.sql.DriverManager;
@@ -19,29 +20,49 @@ public class SqliteApi extends SqlApi {
         System.out.println("Using Sqlite Config Api");
         try {
             Class.forName("org.sqlite.JDBC");
-            CONNECTION = DriverManager.getConnection("JDBC:sqlite:"+database);
+            CONNECTION = DriverManager.getConnection("JDBC:sqlite:" + database);
             SqlApi.setupTables();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void load() {
-        //TODO load objects from Database
+        //TODO probably not here too
     }
 
-    @Override
-    public void save() {
-        for(Map.Entry<String, SerializableFactory<?>> entry: deserializers.entrySet()) {
+    public void saveObjectToDB(String parentIdentifier, String identifier, ObjectStorage storage) {
+        HashMap<String, Storage> map = storage.read();
+        try {
+            connection().createStatement().execute("INSERT OR IGNORE INTO ObjectStorageLink(Identifier, storedObject, isSimple) VALUES('" + parentIdentifier + "', '" + identifier + "', false)");
+            connection().createStatement().execute("REPLACE INTO ObjectStorage(Identifier, className) VALUES('" + identifier + "', '" + storage.getClassName() + "')");
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        for(Map.Entry<String, Storage> entry : map.entrySet()) {
             String id = entry.getKey();
-            SerializableFactory<?> object;
+            Storage subStorage = entry.getValue();
+            if(subStorage instanceof ObjectStorage) {
+                saveObjectToDB(identifier, identifier + "." + id, (ObjectStorage) subStorage);
+            } else if(subStorage instanceof PrimitiveStorage) {
+                savePrimitiveToDB(identifier, identifier + "." + id, (PrimitiveStorage) subStorage);
+            }
+        }
+    }
+
+    public void savePrimitiveToDB(String parentIdentifier, String identifier, PrimitiveStorage storage) {
+        try {
+            connection().createStatement().execute("REPLACE INTO PrimitiveStorage(Identifier, type, data) VALUES('" + identifier + "', '" + storage.getType() + "', '" + storage.read() + "')");
+            connection().createStatement().execute("INSERT OR IGNORE INTO ObjectStorageLink(Identifier, storedObject, isSimple) VALUES('" + parentIdentifier + "', '" + identifier + "', true)");
+        } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
     public void registerObject(String name, SerializableFactory<?> serializableFactory) {
-        if (deserializers.containsKey(name)) return;
+        if(deserializers.containsKey(name)) return;
         deserializers.put(name, serializableFactory);
     }
 

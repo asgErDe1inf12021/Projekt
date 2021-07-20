@@ -2,8 +2,12 @@ package project.save.api;
 
 import de.gurkenlabs.litiengine.Game;
 import project.entities.Player;
+import project.save.sql.sqlite.SqliteApi;
+import project.save.sql.storage.ObjectStorage;
 
-public class SaveState {
+import java.util.HashMap;
+
+public class SaveState implements Serializable {
 
     private static SaveState Instance;
     private final String id;
@@ -32,8 +36,23 @@ public class SaveState {
     }
 
     public void saveGame() {
-        Api.Api.registerObject("player", Player::new);
-        Storage p = Api.Api.saveObject(player);
-        Api.Api.readObject(p);
+        ((SqliteApi) Api.Api).saveObjectToDB("", id, (ObjectStorage) Api.Api.saveObject(this));
+    }
+
+    @Override
+    public HashMap<String, Storage> serialize() {
+        HashMap<String, Storage> map = new HashMap<>();
+        map.put("player", Api.Api.saveObject(player));
+        return map;
+    }
+
+    @Override
+    public String getIdentifier() {
+        return id;
+    }
+
+    @Override
+    public String getClassName() {
+        return "saveState";
     }
 }

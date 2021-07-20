@@ -1,9 +1,11 @@
 package project.save.sql;
 
+import project.save.api.Api;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public abstract class SqlApi extends project.save.api.Api {
+public abstract class SqlApi extends Api {
     protected static Connection CONNECTION;
 
     public static Connection connection() {
@@ -22,6 +24,7 @@ public abstract class SqlApi extends project.save.api.Api {
                 "Identifier TEXT NOT NULL," +
                 "storedObject TEXT NOT NULL," +
                 "isSimple boolean NOT NULL," +
+                "UNIQUE(Identifier, storedObject)," +
                 "FOREIGN KEY (Identifier)" +
                 "   REFERENCES ObjectStorage (Identifier)" +
                 "      ON DELETE CASCADE" +

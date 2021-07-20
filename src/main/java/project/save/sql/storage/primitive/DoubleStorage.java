@@ -13,4 +13,9 @@ public class DoubleStorage extends PrimitiveStorage {
     public Double read() {
         return d;
     }
+
+    @Override
+    public String getType() {
+        return "Double";
+    }
 }

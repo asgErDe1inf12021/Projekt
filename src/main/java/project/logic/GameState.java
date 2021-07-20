@@ -5,6 +5,7 @@ import de.gurkenlabs.litiengine.GameListener;
 import project.database.Database;
 import project.render.TestScreen;
 import project.save.api.Api;
+import project.save.api.SaveState;
 
 public class GameState implements GameListener {
 
@@ -27,7 +28,7 @@ public class GameState implements GameListener {
 
     @Override
     public boolean terminating() {
-        Api.Api.save();
+        SaveState.getInstance().saveGame();
         return true;
     }
 

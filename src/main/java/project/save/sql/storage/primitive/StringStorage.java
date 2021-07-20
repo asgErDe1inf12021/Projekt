@@ -13,4 +13,9 @@ public class StringStorage extends PrimitiveStorage {
     public String read() {
         return s;
     }
+
+    @Override
+    public String getType() {
+        return "String";
+    }
 }

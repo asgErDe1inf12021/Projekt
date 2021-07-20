@@ -13,4 +13,9 @@ public class BooleanStorage extends PrimitiveStorage {
     public Boolean read() {
         return b;
     }
+
+    @Override
+    public String getType() {
+        return "Boolean";
+    }
 }

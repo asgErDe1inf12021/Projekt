@@ -13,4 +13,9 @@ public class IntStorage extends PrimitiveStorage {
     public Integer read() {
         return i;
     }
+
+    @Override
+    public String getType() {
+        return "Integer";
+    }
 }

@@ -6,7 +6,6 @@ public abstract class Api {
     public static Api Api;
 
     public abstract void load();
-    public abstract void save();
 
     public abstract void registerObject(String name, SerializableFactory<?> serializableFactory);
 
