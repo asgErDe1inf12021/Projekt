@@ -17,9 +17,6 @@ public class TestScreen extends GameScreen {
     public void render(final Graphics2D g) {
         super.render(g);
         g.setColor(Color.white);
-        TextRenderer.render(g, "" + Game.loop().getTickRate(), 5, 15);
-
-        //Score Anzeige
         TextRenderer.render(g, "Score: " + Score.SCORE.getScore(), 100, 15);
         TextRenderer.render(g, "Highscore: " + Score.getHighScore(), 185, 15);
     }

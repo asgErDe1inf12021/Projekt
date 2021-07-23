@@ -20,9 +20,12 @@ public class Main {
 
         Game.addGameListener(new GameState());
         Game.init(args);
-        Game.world().loadEnvironment("Stone-Map.tmx");
-        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 33, 35));
-        Resources.spritesheets().add("bush-idle-planted", Resources.spritesheets().load("bush-angry.png", 36, 39));
+        Game.world().loadEnvironment("stoneMap.tmx");
+        Game.world().camera().setClampToMap(true);
+        Game.window().setTitle("The game without a name");
+        // Game.world().getEnvironment("stoneMap.tmx"). // useful for reading data from tmx
+        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 22, 35));
+        Resources.spritesheets().add("bush-idle-down", Resources.spritesheets().load("bush-angry.png", 36, 39));
 
         SaveState.continueGame("SaveName");//would be selected from menu
         //SaveState.newGame("SaveName");

@@ -14,13 +14,16 @@ import project.save.api.Storage;
 
 import java.util.HashMap;
 
-@EntityInfo(width = 33, height = 35)
+@EntityInfo(width = 36, height = 39)
 @MovementInfo(velocity = 100)
-@CollisionInfo(collisionBoxWidth = 33, collisionBoxHeight = 35, collision = true, align = Align.CENTER, valign = Valign.MIDDLE)
+@CollisionInfo(collisionBoxWidth = 36, collisionBoxHeight = 39, collision = true, align = Align.CENTER, valign = Valign.MIDDLE)
 public class Player extends Creature implements Serializable {
 
     public Player() {
-        super("player");
+        super("bush");
+        this.setLocation(300,150);
+        Game.world().camera().setFocus(300, 150);
+        setVisible(true);
         addController(new KeyboardEntityController<>(this));
     }
 
