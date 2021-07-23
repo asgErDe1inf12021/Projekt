@@ -20,7 +20,7 @@ public class Main {
         Game.window().setTitle("The game without a name");
         // Game.world().getEnvironment("stoneMap.tmx"). // useful for reading data from tmx
         Game.start();
-        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 132, 140));
+        Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 22, 35));
         Resources.spritesheets().add("bush-idle-down", Resources.spritesheets().load("bush-angry.png", 36, 39));
         Game.world().environment().add(new Player());
     }
