@@ -27,17 +27,17 @@ public class SaveState implements Serializable {
         Instance = new SaveState(name);
         Instance.player = new Player();
         Score.SCORE = new Score();
-        setHighScore();
+        loadHighScore();
     }
 
     public static void continueGame(String id) {
         Instance = new SaveState(id);
         Instance.player = (Player) ((SqliteApi) Api.Api).loadObject(id + ".player");
         Score.SCORE = (Score) ((SqliteApi) Api.Api).loadObject(id + ".score");
-        setHighScore();
+        loadHighScore();
     }
 
-    private static void setHighScore() {
+    private static void loadHighScore() {
         try {
             ResultSet resultSet = SqlApi.connection().createStatement().executeQuery("SELECT data FROM PrimitiveStorage WHERE Identifier ='HIGHSCORE'");
             if (resultSet.next()) {
@@ -75,7 +75,7 @@ public class SaveState implements Serializable {
 
     public static void saveHighScore() {
         try {
-            SqlApi.connection().createStatement().execute("REPLACE INTO PrimitiveStorage(Identifier, type, data) VALUES('HIGHSCORE', 'Integer', '"+Score.getHighScore()+"') WHERE Identifier ='HIGHSCORE'");
+            SqlApi.connection().createStatement().execute("REPLACE INTO PrimitiveStorage(Identifier, type, data) VALUES('HIGHSCORE', 'Integer', '"+Score.getHighScore()+"')");
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalStateException("failed save HighScore");
