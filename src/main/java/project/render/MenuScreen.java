@@ -1,42 +1,26 @@
 package project.render;
 
-import de.gurkenlabs.litiengine.Align;
-import de.gurkenlabs.litiengine.Valign;
-import de.gurkenlabs.litiengine.graphics.TextRenderer;
-import de.gurkenlabs.litiengine.gui.GuiComponent;
-import de.gurkenlabs.litiengine.gui.TextFieldComponent;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class MenuScreen extends Screen {
+public class MenuScreen extends Screen implements ActionListener{
 
-    TextFieldComponent newGame;
+    static int frameWidth = /*(int) this.getWidth();*/ 1680;
+    static int frameHeight = /*(int) this.getHeight();*/ 1050;
 
-    private ActionListener newGameListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    static Font font = new Font(Font.DIALOG,Font.BOLD,50);
 
-        }
-    };
+    JButton newGame;
+    JButton loadGame;
+    JButton settings;
 
-    private ActionListener loadGameListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
 
-        }
-    };
-
-    private ActionListener settingsListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
-    };
 
     public MenuScreen() {
         super("MENU");
@@ -54,10 +38,6 @@ public class MenuScreen extends Screen {
         // Calling super.render(g) also renders all GuiComponents in this.getComponents()
         super.render(g);
 
-        if(newGame.isPressed()){
-            System.out.println("Clicked!!!");
-        }
-
     }
 
     @Override
@@ -65,9 +45,60 @@ public class MenuScreen extends Screen {
         // This method is called once by the Screen's constructor. Use it to initialize the GuiComponents that will be contained by this screen.
         // Don't forget to call this.getComponents().add(GuiComponent c) so that the components will actually be rendered.
 
-        newGame = new TextFieldComponent(0,0,600,100,"New Game");
-        super.initializeComponents();
-        this.getComponents().add(newGame);
+        JFrame frame = new JFrame();
+        frame.setSize(frameWidth,frameHeight);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
 
+        JLabel title = new JLabel("..Title..");
+        title.setFont(font);
+        title.setBounds(frameWidth/2 - 300,100,600,100);
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+
+        newGame =new JButton("New Game");
+        newGame.setBounds(frameWidth/2 - 300,300,600,100);
+        newGame.addActionListener(this);
+        newGame.setFont(font);
+        newGame.setBackground(Color.black);
+        newGame.setForeground(Color.decode("#00D115"));
+        newGame.setFocusable(false);
+
+        loadGame =new JButton("Load Game");
+        loadGame.setBounds(frameWidth/2 - 300,500,600,100);
+        loadGame.addActionListener(this);
+        loadGame.setFont(font);
+        loadGame.setBackground(Color.black);
+        loadGame.setForeground(Color.decode("#00D115"));
+        loadGame.setFocusable(false);
+
+        settings =new JButton("Settings");
+        settings.setBounds(frameWidth/2 - 300,700,600,100);
+        settings.addActionListener(this);
+        settings.setFont(font);
+        settings.setBackground(Color.black);
+        settings.setForeground(Color.decode("#00D115"));
+        settings.setFocusable(false);
+
+        frame.add(title);
+        frame.add(newGame);
+        frame.add(loadGame);
+        frame.add(settings);
+
+        frame.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == newGame){
+
+        }
+
+        if(e.getSource() == loadGame){
+
+        }
+
+        if(e.getSource() == settings){
+
+        }
     }
 }
