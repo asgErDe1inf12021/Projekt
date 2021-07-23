@@ -4,6 +4,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.resources.Resources;
 import project.entities.Player;
 import project.logic.GameState;
+import project.logic.Score;
 import project.save.api.Api;
 import project.save.api.SaveState;
 import project.save.sql.sqlite.SqliteApi;
@@ -31,5 +32,6 @@ public class Main {
 
     public static void registerSerializables() {
         Api.Api.registerObject("player", Player::new);
+        Api.Api.registerObject("score", Score::new);
     }
 }

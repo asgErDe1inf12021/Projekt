@@ -2,6 +2,7 @@ package project.save.api;
 
 import de.gurkenlabs.litiengine.Game;
 import project.entities.Player;
+import project.logic.Score;
 import project.save.sql.SqlApi;
 import project.save.sql.sqlite.SqliteApi;
 import project.save.sql.storage.ObjectStorage;
@@ -25,11 +26,13 @@ public class SaveState implements Serializable {
     public static void newGame(String name) {
         Instance = new SaveState(name);
         Instance.player = new Player();
+        Score.SCORE = new Score();
     }
 
     public static void continueGame(String id) {
         Instance = new SaveState(id);
         Instance.player = (Player) ((SqliteApi) Api.Api).loadObject(id+".player");
+        Score.SCORE = (Score) ((SqliteApi) Api.Api).loadObject(id+".score");
     }
 
     public void initGame() {
@@ -61,6 +64,7 @@ public class SaveState implements Serializable {
     public HashMap<String, Storage> serialize() {
         HashMap<String, Storage> map = new HashMap<>();
         map.put("player", Api.Api.saveObject(player));
+        map.put("score", Api.Api.saveObject(Score.SCORE));
         return map;
     }
 

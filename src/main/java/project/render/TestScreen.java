@@ -20,7 +20,7 @@ public class TestScreen extends GameScreen {
         TextRenderer.render(g, "" + Game.loop().getTickRate(), 5, 15);
 
         //Score Anzeige
-        TextRenderer.render(g, "Score: " + Score.getScore(), 100, 15);
-        TextRenderer.render(g, "Highscore: " + Score.getScore(), 185, 15);
+        TextRenderer.render(g, "Score: " + Score.SCORE.getScore(), 100, 15);
+        TextRenderer.render(g, "Highscore: " + Score.getHighScore(), 185, 15);
     }
 }
