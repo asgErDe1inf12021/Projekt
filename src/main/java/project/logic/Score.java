@@ -10,7 +10,7 @@ public class Score implements Serializable {
 
     public static Score SCORE;
     private int score;
-    private static int highScore;
+    private static int HIGHSCORE;
 
     public int getScore() {
         updateScore();
@@ -18,7 +18,7 @@ public class Score implements Serializable {
     }
 
     public static int getHighScore() {
-        return highScore;
+        return HIGHSCORE;
     }
 
     private void updateScore() {
@@ -35,7 +35,11 @@ public class Score implements Serializable {
     }
 
     private void updateHighScore() {
-        if (score > highScore) highScore = score;
+        if (score > HIGHSCORE) HIGHSCORE = score;
+    }
+
+    public static void setHighScore(int highScore) {
+        HIGHSCORE = highScore;
     }
 
     @Override

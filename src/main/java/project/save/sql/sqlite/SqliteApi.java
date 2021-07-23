@@ -23,7 +23,7 @@ public class SqliteApi extends SqlApi {
             Class.forName("org.sqlite.JDBC");
             CONNECTION = DriverManager.getConnection("JDBC:sqlite:" + database);
             SqlApi.setupTables();
-        } catch(SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -31,22 +31,23 @@ public class SqliteApi extends SqlApi {
     public Serializable loadObject(String id) {
         String className;
         try {
-            className = connection().createStatement().executeQuery("SELECT classname FROM ObjectStorage WHERE Identifier ='"+id+"'").getString("className");
-        } catch(SQLException e) {
-            throw new IllegalStateException("cannot find Object with id "+id);
+            className = connection().createStatement().executeQuery("SELECT classname FROM ObjectStorage WHERE Identifier ='" + id + "'").getString("className");
+        } catch (SQLException e) {
+            throw new IllegalStateException("cannot find Object with id " + id);
         }
-        if(!deserializers.containsKey(className)) throw new IllegalStateException("There is no Serializers registered under "+className);
+        if (!deserializers.containsKey(className))
+            throw new IllegalStateException("There is no Serializers registered under " + className);
         HashMap<String, Storage> map = new HashMap<>();
         try {
-            ResultSet resultSet = connection().createStatement().executeQuery("SELECT storedObject, type, data FROM ObjectStorageLink INNER JOIN PrimitiveStorage ON storedObject = PrimitiveStorage.Identifier WHERE ObjectStorageLink.Identifier ='"+id+"'");
-            while(resultSet.next()) {
+            ResultSet resultSet = connection().createStatement().executeQuery("SELECT storedObject, type, data FROM ObjectStorageLink INNER JOIN PrimitiveStorage ON storedObject = PrimitiveStorage.Identifier WHERE ObjectStorageLink.Identifier ='" + id + "'");
+            while (resultSet.next()) {
                 String name = resultSet.getString("storedObject");
                 String type = resultSet.getString("type");
                 String value = resultSet.getString("data");
-                map.put(name.substring(id.length()+1), saveAny(type, value));
+                map.put(name.substring(id.length() + 1), saveAny(type, value));
             }
-        } catch(SQLException e) {
-            throw new IllegalStateException("failed to load Object with id "+id);
+        } catch (SQLException e) {
+            throw new IllegalStateException("failed to load Object with id " + id);
         }
         return (Serializable) deserializers.get(className).create(map);
     }
@@ -56,15 +57,15 @@ public class SqliteApi extends SqlApi {
         try {
             connection().createStatement().execute("INSERT OR IGNORE INTO ObjectStorageLink(Identifier, storedObject, isSimple) VALUES('" + parentIdentifier + "', '" + identifier + "', false)");
             connection().createStatement().execute("REPLACE INTO ObjectStorage(Identifier, className) VALUES('" + identifier + "', '" + storage.getClassName() + "')");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        for(Map.Entry<String, Storage> entry : map.entrySet()) {
+        for (Map.Entry<String, Storage> entry : map.entrySet()) {
             String id = entry.getKey();
             Storage subStorage = entry.getValue();
-            if(subStorage instanceof ObjectStorage) {
+            if (subStorage instanceof ObjectStorage) {
                 saveObjectToDB(identifier, identifier + "." + id, (ObjectStorage) subStorage);
-            } else if(subStorage instanceof PrimitiveStorage) {
+            } else if (subStorage instanceof PrimitiveStorage) {
                 savePrimitiveToDB(identifier, identifier + "." + id, (PrimitiveStorage) subStorage);
             }
         }
@@ -81,7 +82,7 @@ public class SqliteApi extends SqlApi {
 
     @Override
     public void registerObject(String name, SerializableFactory<?> serializableFactory) {
-        if(deserializers.containsKey(name)) return;
+        if (deserializers.containsKey(name)) return;
         deserializers.put(name, serializableFactory);
     }
 
@@ -122,7 +123,7 @@ public class SqliteApi extends SqlApi {
     }
 
     public Storage saveAny(String type, String value) {
-        switch(type) {
+        switch (type) {
             case "Integer":
                 return saveInt(Integer.parseInt(value));
             case "Boolean":

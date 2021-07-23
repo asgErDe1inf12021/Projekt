@@ -27,12 +27,24 @@ public class SaveState implements Serializable {
         Instance = new SaveState(name);
         Instance.player = new Player();
         Score.SCORE = new Score();
+        setHighScore();
     }
 
     public static void continueGame(String id) {
         Instance = new SaveState(id);
-        Instance.player = (Player) ((SqliteApi) Api.Api).loadObject(id+".player");
-        Score.SCORE = (Score) ((SqliteApi) Api.Api).loadObject(id+".score");
+        Instance.player = (Player) ((SqliteApi) Api.Api).loadObject(id + ".player");
+        Score.SCORE = (Score) ((SqliteApi) Api.Api).loadObject(id + ".score");
+        setHighScore();
+    }
+
+    private static void setHighScore() {
+        try {
+            ResultSet resultSet = SqlApi.connection().createStatement().executeQuery("SELECT data FROM PrimitiveStorage WHERE Identifier ='HIGHSCORE'");
+            if (resultSet.next()) {
+                Score.setHighScore(Integer.parseInt(resultSet.getString("data")));
+            }
+        } catch (SQLException ignored) {
+        }
     }
 
     public void initGame() {
@@ -47,10 +59,10 @@ public class SaveState implements Serializable {
         List<String> saves = new ArrayList<>();
         try {
             ResultSet resultSet = SqlApi.connection().createStatement().executeQuery("SELECT storedObject FROM ObjectStorageLink WHERE Identifier ='Saves'");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 saves.add(resultSet.getString("storedObject"));
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new IllegalStateException("failed to load Saves");
         }
         return saves;
@@ -58,6 +70,16 @@ public class SaveState implements Serializable {
 
     public void saveGame() {
         ((SqliteApi) Api.Api).saveObjectToDB("Saves", id, (ObjectStorage) Api.Api.saveObject(this));
+        saveHighScore();
+    }
+
+    public static void saveHighScore() {
+        try {
+            SqlApi.connection().createStatement().execute("REPLACE INTO PrimitiveStorage(Identifier, type, data) VALUES('HIGHSCORE', 'Integer', '"+Score.getHighScore()+"') WHERE Identifier ='HIGHSCORE'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("failed save HighScore");
+        }
     }
 
     @Override
