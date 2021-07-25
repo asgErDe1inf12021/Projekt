@@ -1,6 +1,6 @@
-package project.save.implementation.storage.primitive;
+package project.save.sql.storage.primitive;
 
-import project.save.implementation.storage.PrimitiveStorage;
+import project.save.sql.storage.PrimitiveStorage;
 
 public class BooleanStorage extends PrimitiveStorage {
 
@@ -12,5 +12,10 @@ public class BooleanStorage extends PrimitiveStorage {
 
     public Boolean read() {
         return b;
+    }
+
+    @Override
+    public String getType() {
+        return "Boolean";
     }
 }
