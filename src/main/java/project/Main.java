@@ -6,7 +6,6 @@ import project.entities.Player;
 import project.logic.GameState;
 import project.logic.Score;
 import project.save.api.Api;
-import project.save.api.SaveState;
 import project.save.sql.sqlite.SqliteApi;
 
 public class Main {
