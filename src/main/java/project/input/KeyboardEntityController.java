@@ -1,6 +1,7 @@
 package project.input;
 
 import java.awt.event.KeyEvent;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,16 +35,17 @@ public class KeyboardEntityController<T extends IMobileEntity> extends MovementC
     }
 
     public void handlePressedKey(final KeyEvent keyCode) {
-        if (this.up.contains(keyCode.getKeyCode())) {
-            this.setDy(this.getDy() - 1);
-        } else if (this.down.contains(keyCode.getKeyCode())) {
-            this.setDy(this.getDy() + 1);
-        } else if (this.left.contains(keyCode.getKeyCode())) {
-            this.setDx(this.getDx() - 1);
-        } else if (this.right.contains(keyCode.getKeyCode())) {            // getDx, getDy tells the current coodinates of the character.
-            this.setDx(this.getDx() + 1);                                    // setDx, setDy sets the coodinates of the character.
-        }
-        Game.world().camera().pan(getEntity().getX(), getEntity().getY(), 1);
+            if (this.up.contains(keyCode.getKeyCode())) {
+                this.setDy(this.getDy() - 1);
+            } else if (this.down.contains(keyCode.getKeyCode())) {
+                this.setDy(this.getDy() + 1);
+            } else if (this.left.contains(keyCode.getKeyCode())) {
+                this.setDx(this.getDx() - 1);
+            } else if (this.right.contains(keyCode.getKeyCode())) {            // getDx, getDy tells the current coodinates of the character.
+                this.setDx(this.getDx() + 1);                                    // setDx, setDy sets the coodinates of the character.
+            }
+            Game.world().camera().pan(getEntity().getCenter(), 45); // smooth camera motion
+            // Game.world().camera().setFocus(getEntity().getCenter()); // no smooth camera motion
     }
 
     public void addUpKey(int keyCode) {

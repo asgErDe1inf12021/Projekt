@@ -5,14 +5,12 @@ import de.gurkenlabs.litiengine.GameListener;
 import project.database.Database;
 import project.render.MenuScreen;
 import project.render.TestScreen;
+import project.save.api.Api;
+import project.save.api.SaveState;
 
 public class GameState implements GameListener {
 
-    static Database database;
-
-    public GameState(){
-        database = new Database();
-    }
+    public GameState(){}
 
     @Override
     public void initialized(String... args) {
@@ -27,7 +25,7 @@ public class GameState implements GameListener {
 
     @Override
     public boolean terminating() {
-        database.updateHighscore(database.getCurrentUser(),database.getScore());
+        SaveState.getInstance().saveGame();
         return true;
     }
 
