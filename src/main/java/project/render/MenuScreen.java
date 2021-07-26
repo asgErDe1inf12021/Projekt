@@ -1,9 +1,10 @@
 package project.render;
 
+import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
+import project.save.api.SaveState;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +20,7 @@ public class MenuScreen extends Screen implements ActionListener{
     JButton newGame;
     JButton loadGame;
     JButton settings;
-
+    JFrame frame;
 
 
     public MenuScreen() {
@@ -45,7 +46,7 @@ public class MenuScreen extends Screen implements ActionListener{
         // This method is called once by the Screen's constructor. Use it to initialize the GuiComponents that will be contained by this screen.
         // Don't forget to call this.getComponents().add(GuiComponent c) so that the components will actually be rendered.
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setSize(frameWidth,frameHeight);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
@@ -91,15 +92,14 @@ public class MenuScreen extends Screen implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == newGame){
-
+            SaveState.newGame("SaveName");
+        } else if(e.getSource() == loadGame){
+            SaveState.continueGame("SaveName");
+        } else if(e.getSource() == settings){
+            return;
         }
-
-        if(e.getSource() == loadGame){
-
-        }
-
-        if(e.getSource() == settings){
-
-        }
+        SaveState.getInstance().initGame();
+        Game.start();
+        frame.dispose();
     }
 }
