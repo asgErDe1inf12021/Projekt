@@ -2,9 +2,8 @@ package project.logic;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.GameListener;
-import project.database.Database;
+import project.render.MenuScreen;
 import project.render.TestScreen;
-import project.save.api.Api;
 import project.save.api.SaveState;
 
 public class GameState implements GameListener {
@@ -14,11 +13,12 @@ public class GameState implements GameListener {
     @Override
     public void initialized(String... args) {
         Game.setInfo("gameInfo.xml");
+        Game.screens().add(new MenuScreen());
     }
 
     @Override
     public void started() {
-        Game.screens().add(new TestScreen());
+        Game.screens().display(new TestScreen());
     }
 
     @Override
