@@ -26,11 +26,6 @@ public class Main {
         // Game.world().getEnvironment("stoneMap.tmx"). // useful for reading data from tmx
         Resources.spritesheets().add("player-idle-down", Resources.spritesheets().load("Player_Model_1.png", 22, 35));
         Resources.spritesheets().add("bush-idle-down", Resources.spritesheets().load("bush-angry.png", 36, 39));
-
-        /*//SaveState.continueGame("SaveName");//would be selected from menu
-        SaveState.newGame("SaveName");
-        SaveState.getInstance().initGame();
-        Game.start();*/
     }
 
     public static void registerSerializables() {
