@@ -18,7 +18,7 @@ public class GameState implements GameListener {
 
     @Override
     public void started() {
-        Game.screens().add(new TestScreen());
+        Game.screens().display(new TestScreen());
     }
 
     @Override
