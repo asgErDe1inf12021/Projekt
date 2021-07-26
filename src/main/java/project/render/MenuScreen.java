@@ -54,6 +54,7 @@ public class MenuScreen extends Screen implements ActionListener{
         title.setFont(font);
         title.setBounds(frameWidth/2 - 300,100,600,100);
         title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setForeground(Color.decode("#00D115"));
 
         newGame =new JButton("New Game");
         newGame.setBounds(frameWidth/2 - 300,300,600,100);
