@@ -47,7 +47,7 @@ public class MenuScreen extends Screen implements ActionListener {
         frame.setSize(1920, 1080);
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+        frame.setLayout(new GridLayout());
         frame.setVisible(true);
 
         JLabel title = new JLabel("..Title..");
